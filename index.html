@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ramazan — Senior iOS Engineer</title>
+<meta name="description" content="Ramazan — Senior iOS Engineer. Swift & SwiftUI apps shipped to 1M+ users. San Francisco, CA.">
+<style>
+  :root{
+    --bg:#ffffff;
+    --bg-alt:#f5f5f7;
+    --card:#ffffff;
+    --border:#d2d2d7;
+    --accent:#0071e3;
+    --accent-dark:#0058b0;
+    --text:#1d1d1f;
+    --muted:#6e6e73;
+    --radius:18px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display','Inter',system-ui,sans-serif;
+    line-height:1.6;
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.brand{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display','Inter',system-ui,sans-serif;letter-spacing:-.02em;}
+  a{color:inherit;text-decoration:none;}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 24px;}
+  section{padding:100px 0;}
+  section.alt{background:var(--bg-alt);}
+  .eyebrow{
+    color:var(--accent);
+    font-weight:600;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    font-size:13px;
+    margin-bottom:12px;
+  }
+  h2.section-title{font-size:clamp(28px,4vw,40px);font-weight:700;margin-bottom:14px;color:var(--text);}
+  .section-sub{color:var(--muted);font-size:18px;max-width:640px;margin-bottom:48px;}
+
+  /* NAV */
+  header{
+    position:sticky;top:0;z-index:50;
+    background:rgba(255,255,255,.8);
+    backdrop-filter:saturate(180%) blur(20px);
+    border-bottom:1px solid rgba(0,0,0,.06);
+  }
+  nav{display:flex;align-items:center;justify-content:space-between;padding:16px 24px;max-width:1120px;margin:0 auto;}
+  .brand{color:var(--text);font-weight:700;font-size:19px;}
+  .nav-links{display:flex;gap:30px;list-style:none;}
+  .nav-links a{color:var(--muted);font-size:14px;font-weight:400;transition:color .2s;}
+  .nav-links a:hover{color:var(--text);}
+  .menu-btn{
+    display:none;width:40px;height:40px;border-radius:50%;
+    border:none;background:transparent;color:var(--text);
+    align-items:center;justify-content:center;cursor:pointer;font-size:18px;
+  }
+  @media(max-width:860px){
+    .nav-links{display:none;}
+    .menu-btn{display:flex;}
+  }
+  .mobile-menu{
+    display:none;flex-direction:column;gap:4px;padding:8px 24px 20px;
+    border-bottom:1px solid rgba(0,0,0,.06);background:#fff;
+  }
+  .mobile-menu.open{display:flex;}
+  .mobile-menu a{padding:12px 0;color:var(--muted);border-bottom:1px solid rgba(0,0,0,.06);font-size:15px;}
+  .mobile-menu a:last-child{border-bottom:none;}
+
+  /* HERO */
+  .hero{padding:96px 0 72px;}
+  .hero-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:40px;align-items:center;}
+  @media(max-width:860px){.hero-grid{grid-template-columns:1fr;}}
+  .hero h1{font-size:clamp(42px,6vw,68px);font-weight:700;line-height:1.05;color:var(--text);}
+  .hero .role{color:var(--accent);font-size:clamp(20px,2.6vw,26px);font-weight:600;
+    margin:14px 0 4px;display:inline-block;}
+  .hero p.desc{color:var(--muted);font-size:18px;max-width:560px;margin:20px 0 32px;}
+  .btn-row{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:56px;}
+  .btn{padding:14px 26px;border-radius:980px;font-weight:500;font-size:16px;cursor:pointer;transition:background .2s,opacity .2s;display:inline-block;}
+  .btn-primary{background:var(--accent);color:#fff;}
+  .btn-primary:hover{background:var(--accent-dark);}
+  .btn-outline{border:1px solid var(--border);color:var(--text);background:#fff;}
+  .btn-outline:hover{background:var(--bg-alt);}
+  .stats{display:grid;grid-template-columns:repeat(4,auto);gap:36px;}
+  @media(max-width:600px){.stats{grid-template-columns:repeat(2,1fr);}}
+  .stat b{display:block;color:var(--text);font-size:26px;font-weight:700;}
+  .stat span{color:var(--muted);font-size:12px;letter-spacing:.04em;text-transform:uppercase;}
+  .avatar-wrap{display:flex;justify-content:center;align-items:center;}
+  .avatar{
+    width:300px;height:300px;border-radius:50%;
+    background:linear-gradient(160deg,#eef4fb,#dce9f7);
+    display:flex;align-items:center;justify-content:center;
+    font-weight:700;font-size:100px;color:var(--accent);
+    box-shadow:0 20px 60px -20px rgba(0,0,0,.12), inset 0 0 0 1px rgba(0,0,0,.04);
+  }
+  @media(max-width:860px){.avatar{width:200px;height:200px;font-size:70px;}}
+
+  /* CARD */
+  .card{
+    background:var(--card);border:1px solid var(--border);border-radius:var(--radius);
+    padding:28px;transition:box-shadow .2s, transform .2s;
+    box-shadow:0 1px 2px rgba(0,0,0,.03);
+  }
+  .card:hover{box-shadow:0 16px 40px -20px rgba(0,0,0,.15);transform:translateY(-2px);}
+  .grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
+  .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+  .grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;}
+  @media(max-width:900px){.grid-4,.grid-3,.grid-2{grid-template-columns:1fr;}}
+
+  .card .icon{font-size:26px;margin-bottom:14px;}
+  .card h3{font-size:18px;margin-bottom:10px;color:var(--text);font-weight:600;}
+  .card p{color:var(--muted);font-size:15px;}
+
+  /* TAGS */
+  .tags{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0;}
+  .tag{
+    background:var(--bg-alt);border:1px solid var(--border);color:var(--text);
+    font-size:13px;padding:6px 12px;border-radius:8px;
+  }
+
+  /* PROJECT CARD */
+  .proj-card{position:relative;}
+  .badge{
+    position:absolute;top:-13px;right:24px;
+    padding:5px 14px;border-radius:999px;font-size:12px;font-weight:600;
+    border:1px solid var(--border);
+  }
+  .badge-live{background:#eaf3ff;color:var(--accent-dark);border-color:#cfe4ff;}
+  .badge-building{background:#fff4e5;color:#a15c00;border-color:#f3ddb2;}
+  .proj-card h3{color:var(--text);font-size:21px;margin-bottom:6px;font-weight:700;}
+  .proj-card .desc{color:var(--muted);font-size:15px;margin-bottom:4px;}
+  .proj-card ul{margin:16px 0 20px;padding-left:0;list-style:none;}
+  .proj-card li{color:#3a3a3c;font-size:14.5px;margin-bottom:10px;padding-left:22px;position:relative;}
+  .proj-card li::before{content:"→";position:absolute;left:0;color:var(--accent);}
+  .proj-link{color:var(--accent);font-weight:600;font-size:14.5px;display:inline-flex;align-items:center;gap:6px;}
+  .proj-link:hover{color:var(--accent-dark);}
+
+  .center-btn{display:flex;justify-content:center;margin-top:48px;}
+
+  /* EXPERIENCE TIMELINE */
+  .timeline-card{position:relative;}
+  .timeline-head{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:8px;margin-bottom:4px;}
+  .timeline-head h3{color:var(--text);font-size:22px;font-weight:700;}
+  .timeline-head .years{color:var(--muted);font-size:14px;}
+  .timeline-role{color:var(--accent);font-size:15px;font-weight:500;margin-bottom:18px;}
+  .timeline-card ul{list-style:none;}
+  .timeline-card li{color:#3a3a3c;font-size:14.5px;margin-bottom:10px;padding-left:22px;position:relative;}
+  .timeline-card li::before{content:"▶";font-size:10px;position:absolute;left:0;top:5px;color:var(--accent);}
+  .timeline-stack{margin-top:24px;}
+
+  /* CONTACT */
+  .contact-card{text-align:center;}
+  .contact-card .icon{font-size:30px;}
+  .contact-card h3{color:var(--text);font-size:17px;margin:14px 0 6px;font-weight:600;}
+  .contact-card p{color:var(--muted);font-size:14px;word-break:break-word;}
+  .contact-card a:hover{color:var(--accent);}
+
+  footer{border-top:1px solid var(--border);padding:40px 0;text-align:center;background:var(--bg-alt);}
+  .footer-links{display:flex;gap:28px;justify-content:center;flex-wrap:wrap;margin-bottom:18px;}
+  .footer-links a{color:var(--muted);font-size:14px;}
+  .footer-links a:hover{color:var(--text);}
+  .copyright{color:#86868b;font-size:13px;}
+
+  /* PHONE */
+  @media(max-width:600px){
+    .wrap{padding:0 20px;}
+    section{padding:64px 0;}
+    .hero{padding:56px 0 48px;}
+    .section-sub{margin-bottom:32px;font-size:16px;}
+    .btn-row{flex-direction:column;}
+    .btn{text-align:center;width:100%;}
+    .card{padding:22px;}
+    .proj-card{padding-top:34px;}
+    .badge{top:-13px;right:16px;font-size:11px;padding:4px 11px;}
+    .timeline-head{flex-direction:column;align-items:flex-start;gap:2px;}
+    .footer-links{gap:16px 22px;}
+    .nav-links{display:none;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <div class="brand">R.</div>
+    <ul class="nav-links">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#currently">Currently</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#activities">Activities</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <button class="menu-btn" id="menuBtn" aria-label="Menu">☰</button>
+  </nav>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#home">Home</a>
+    <a href="#currently">Currently</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#experience">Experience</a>
+    <a href="#activities">Activities</a>
+    <a href="#contact">Contact</a>
+  </div>
+</header>
+
+<section class="hero" id="home">
+  <div class="wrap hero-grid">
+    <div>
+      <h1>Ramazan</h1>
+      <div class="role">Senior iOS Engineer</div>
+      <p class="desc">Building native iOS apps with Swift & SwiftUI for 5+ years — from fintech payment infrastructure processing 450K+ monthly transactions for 1M+ users, to 10+ solo-shipped apps on the App Store. Based in San Francisco, CA. US Green Card holder — no sponsorship needed.</p>
+      <div class="btn-row">
+        <a href="#projects" class="btn btn-primary">View My Work</a>
+        <a href="#contact" class="btn btn-outline">Get In Touch</a>
+      </div>
+      <div class="stats">
+        <div class="stat"><b>1M+</b><span>Users Served</span></div>
+        <div class="stat"><b>5+</b><span>Years Experience</span></div>
+        <div class="stat"><b>10+</b><span>Apps Shipped</span></div>
+        <div class="stat"><b>98%</b><span>Error-Free Rate</span></div>
+      </div>
+    </div>
+    <div class="avatar-wrap">
+      <div class="avatar">R</div>
+    </div>
+  </div>
+</section>
+
+
+<section id="currently" class="alt">
+  <div class="wrap">
+    <div class="eyebrow">Right now</div>
+    <h2 class="section-title">Currently</h2>
+    <p class="section-sub">Where my time and focus are going at the moment.</p>
+    <div class="grid-3">
+      <div class="card">
+        <div class="icon">🏦</div>
+        <h3>Building</h3>
+        <p>Senior iOS Engineer / Team Lead at <strong>Kompanion Bank</strong> — cut the payment error rate from 5% to 2% across 450K+ monthly transactions for 1M+ users.</p>
+      </div>
+      <div class="card">
+        <div class="icon">🔍</div>
+        <h3>Interviewing</h3>
+        <p>Actively interviewing for Senior iOS roles at US product companies — fintech and consumer-facing teams in San Francisco and remote-first.</p>
+      </div>
+      <div class="card">
+        <div class="icon">🚀</div>
+        <h3>Shipped</h3>
+        <p>Solo-designed and shipped 10+ apps outside my day job — including <strong>Meiman</strong> (5.0★, 10K+ users), <strong>iZDE Sim</strong> (100+ countries), and <strong>Dungan Keyboard</strong> — all live on the App Store.</p>
+      </div>
+      <div class="card">
+        <div class="icon">🎓</div>
+        <h3>Mentoring</h3>
+        <p>iOS instructor at <strong>Geeks Bootcamp</strong> — trained 100+ students across 10+ cohorts, several now working iOS developers.</p>
+      </div>
+      <div class="card">
+        <div class="icon">🤖</div>
+        <h3>Workflow</h3>
+        <p>Daily <a href="https://claude.com/claude-code" style="color:var(--accent);">Claude Code</a> user — AI-assisted development is part of how I ship faster without cutting corners.</p>
+      </div>
+      <div class="card">
+        <div class="icon">🔒</div>
+        <h3>Values</h3>
+        <p>Native platform depth, privacy & security by design, and craft over shortcuts — the standard I hold every release to.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section id="skills">
+  <div class="wrap">
+    <div class="eyebrow">My Expertise</div>
+    <h2 class="section-title">Technical Skills</h2>
+    <p class="section-sub">A native-first iOS toolkit for building apps that hold up at scale.</p>
+    <div class="grid-3">
+      <div class="card">
+        <h3>Languages & UI</h3>
+        <div class="tags">
+          <span class="tag">Swift</span><span class="tag">SwiftUI</span>
+          <span class="tag">UIKit</span><span class="tag">Objective-C</span>
+        </div>
+      </div>
+      <div class="card">
+        <h3>Concurrency & Architecture</h3>
+        <div class="tags">
+          <span class="tag">Combine</span><span class="tag">async/await</span>
+          <span class="tag">RxSwift</span><span class="tag">GCD / OperationQueue</span>
+          <span class="tag">MVVM</span><span class="tag">MVI</span><span class="tag">Coordinator</span>
+          <span class="tag">SPM</span><span class="tag">Tuist</span>
+        </div>
+      </div>
+      <div class="card">
+        <h3>Networking & Security</h3>
+        <div class="tags">
+          <span class="tag">URLSession</span><span class="tag">WebSockets</span>
+          <span class="tag">REST APIs</span><span class="tag">SSL Pinning</span>
+          <span class="tag">Keychain</span><span class="tag">Face ID / Touch ID</span>
+          <span class="tag">App Transport Security</span>
+        </div>
+      </div>
+      <div class="card">
+        <h3>Persistence, Backend & Analytics</h3>
+        <div class="tags">
+          <span class="tag">Core Data</span><span class="tag">Realm</span><span class="tag">Firebase</span><span class="tag">Amplitude</span>
+        </div>
+      </div>
+      <div class="card">
+        <h3>Testing, CI/CD & Distribution</h3>
+        <div class="tags">
+          <span class="tag">XCTest</span><span class="tag">SwiftLint</span><span class="tag">Fastlane</span>
+          <span class="tag">TestFlight</span><span class="tag">App Store Connect</span>
+          <span class="tag">GitHub Actions</span><span class="tag">Sentry</span>
+        </div>
+      </div>
+      <div class="card">
+        <h3>Cross-Platform</h3>
+        <div class="tags"><span class="tag">Kotlin Multiplatform (KMM)</span></div>
+        <p style="margin-top:12px;font-size:13.5px;">Comfortable sharing business logic when a project calls for it — native Swift/SwiftUI is home base.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section id="projects" class="alt">
+  <div class="wrap">
+    <div class="eyebrow">My Work</div>
+    <h2 class="section-title">Featured Projects</h2>
+    <p class="section-sub">Payment infrastructure, architecture migrations, and solo-shipped consumer apps — live on the App Store.</p>
+    <div class="grid-2">
+
+      <div class="card proj-card">
+        <span class="badge badge-live">Live on App Store</span>
+        <h3>Kompanion — Payment Infrastructure</h3>
+        <p class="desc">Payments domain, owned end-to-end at Kompanion Bank</p>
+        <div class="tags">
+          <span class="tag">Swift</span><span class="tag">UIKit</span><span class="tag">SwiftUI</span><span class="tag">MVVM</span><span class="tag">SPM</span>
+        </div>
+        <ul>
+          <li>Re-architected the Payment Form: per-service MVP controllers → a protocol-driven Composer + CollectionView model stack — new payment types now need only a new ViewModel and section config</li>
+          <li>Cut the payment error rate from 5% to 2% across 450K+ monthly transactions, serving 1M+ users</li>
+          <li>Led the full CocoaPods → SPM migration (25+ dependencies) + Tuist, saving 15–30 min per developer per build cycle</li>
+        </ul>
+        <a class="proj-link" href="https://apps.apple.com/us/app/kompanion/id1459828752" target="_blank" rel="noopener">View on App Store →</a>
+      </div>
+
+      <div class="card proj-card">
+        <span class="badge badge-live">Live on App Store</span>
+        <h3>Optima24 — MVI Migration</h3>
+        <p class="desc">Team lead at Optima Bank Kyrgyzstan</p>
+        <div class="tags">
+          <span class="tag">SwiftUI</span><span class="tag">MVI</span><span class="tag">KMM</span><span class="tag">SPM</span>
+        </div>
+        <ul>
+          <li>Led 5 iOS engineers; proposed and drove MVI adoption over MVVM — the only architecture compatible with our KMM shared logic layer's intent→state contract, giving 100% business logic parity across iOS and Android</li>
+          <li>Drove a 70% UIKit → SwiftUI migration of financial modules while holding a 98.5% crash-free rate; built a reusable SwiftUI design system adopted team-wide</li>
+          <li>Decoupled the monolith into feature-boundary SPM frameworks, enabling parallel development across domains</li>
+        </ul>
+        <a class="proj-link" href="https://apps.apple.com/us/app/optima24/id1021852052" target="_blank" rel="noopener">View on App Store →</a>
+      </div>
+
+      <div class="card proj-card">
+        <span class="badge badge-live">Live · 5.0★</span>
+        <h3>Meiman</h3>
+        <p class="desc">Solo-built, Airbnb-style dual-sided marketplace</p>
+        <div class="tags">
+          <span class="tag">Swift</span><span class="tag">SwiftUI</span><span class="tag">WebSockets</span><span class="tag">Payments SDK</span>
+        </div>
+        <ul>
+          <li>Architected booking flows, real-time chat via WebSocket, payment SDK integration, map-based search, and calendar system — solo, with no team or funding</li>
+          <li>Made every product decision independently, end to end</li>
+          <li>10K+ users, 5.0 App Store rating, 99.9% crash-free rate — still live and maintained</li>
+        </ul>
+        <a class="proj-link" href="https://apps.apple.com/us/app/meiman/id6742324373" target="_blank" rel="noopener">View on App Store →</a>
+      </div>
+
+      <div class="card proj-card">
+        <span class="badge badge-live">Live on App Store</span>
+        <h3>iZDE Sim</h3>
+        <p class="desc">eSIM marketplace, sole developer</p>
+        <div class="tags">
+          <span class="tag">Swift</span><span class="tag">SwiftUI</span><span class="tag">REST APIs</span>
+        </div>
+        <ul>
+          <li>Designed and built an eSIM marketplace end to end as the sole engineer</li>
+          <li>Live in 100+ countries — handled product, architecture, and shipping independently</li>
+        </ul>
+        <a class="proj-link" href="https://apps.apple.com/us/app/izde-sim/id6720749966" target="_blank" rel="noopener">View on App Store →</a>
+      </div>
+
+      <div class="card proj-card">
+        <span class="badge badge-live">Live on App Store</span>
+        <h3>Dungan Keyboard</h3>
+        <p class="desc">Custom Cyrillic keyboard extension, sole developer</p>
+        <div class="tags">
+          <span class="tag">Swift</span><span class="tag">UIKit</span><span class="tag">Keyboard Extension</span>
+        </div>
+        <ul>
+          <li>Solo-built a native iOS Keyboard Extension bringing Cyrillic input to Dungan, a Sino-Islamic minority language</li>
+          <li>Worked within the strict memory and App Group data-sharing constraints unique to keyboard extensions</li>
+          <li>A niche, community-focused product outside the fintech/marketplace space</li>
+        </ul>
+        <a class="proj-link" href="https://apps.apple.com/us/app/%D0%B4%D1%83%D0%BD%D0%B3%D0%B0%D0%BD%D1%81%D0%BA%D0%B0%D1%8F-%D0%BA%D0%BB%D0%B0%D0%B2%D0%B8%D0%B0%D1%82%D1%83%D1%80%D0%B0/id6758463468" target="_blank" rel="noopener">View on App Store →</a>
+      </div>
+
+      <div class="card proj-card">
+        <h3>Mustard</h3>
+        <p class="desc">US-based, remote — iOS Engineer</p>
+        <div class="tags">
+          <span class="tag">Swift</span><span class="tag">Instruments</span><span class="tag">AVFoundation</span>
+        </div>
+        <ul>
+          <li>Owned the GIF rendering pipeline — object pooling, lazy frame decoding, and a custom memory-mapped cache for 30+ concurrent GIFs with stable memory</li>
+          <li>Shipped 20+ core social features: Instagram-style profiles, in-app video via AVFoundation, comments feed, follower system</li>
+          <li>Maintained a 99.6% crash-free rate with Amplitude + Firebase monitoring</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <p style="text-align:center;color:var(--muted);margin-top:32px;font-size:15px;">
+      Also shipped: <a href="https://apps.apple.com/us/app/izde/id6498629576" target="_blank" rel="noopener" style="color:var(--accent);">Izde</a> ·
+      <a href="https://apps.apple.com/us/app/tazar-kg/id1523623515" target="_blank" rel="noopener" style="color:var(--accent);">Tazar</a> ·
+      and 3 more small apps <em>(early-stage, not fully featured)</em>
+    </p>
+
+    <div class="center-btn">
+      <a href="https://github.com/1Ostep1" target="_blank" rel="noopener" class="btn btn-outline">View All Repositories on GitHub →</a>
+    </div>
+  </div>
+</section>
+
+
+<section id="experience">
+  <div class="wrap">
+    <div class="eyebrow">Work Experience</div>
+    <h2 class="section-title">Experience</h2>
+    <p class="section-sub">Hands-on professional experience building and leading real-world iOS systems.</p>
+
+    <div class="card timeline-card" style="margin-bottom:24px;">
+      <div class="timeline-head">
+        <h3>Kompanion Bank</h3>
+        <span class="years">Sep 2023 – Present</span>
+      </div>
+      <div class="timeline-role">Senior iOS Engineer / Team Lead (Payments)</div>
+      <ul>
+        <li>Own the payments domain end-to-end — re-architected the Payment Form from per-service MVP controllers to a protocol-driven Composer + CollectionView model stack, so each new payment type needs only a new ViewModel and section config instead of a new screen stack</li>
+        <li>Fixed UI, logic, timeout, and input-masking bugs, cutting the payment error rate from 5% to 2% across 450K+ monthly transactions</li>
+        <li>Led the full CocoaPods → SPM migration (25+ dependencies) + Tuist, eliminating Xcode project merge conflicts and saving 15–30 minutes per developer per build cycle</li>
+        <li>Established team-wide engineering standards: SwiftLint in CI, PR review checklists, branching strategy, and Fastlane for automated App Store deployment (~20 min saved per build)</li>
+        <li>Migrated the Authorization and Cashback modules from UIKit to SwiftUI/MVVM + Combine, setting the team's reusable migration pattern</li>
+        <li>Owned payment status reliability early on — replaced recursive per-second polling (which overloaded servers at 1M+ users and kept firing after screen dismissal) with RxSwift staged polling and progressive backoff</li>
+        <li>Delivered a card issuance system processing 5,000+ physical card requests, with local caching for card and account data to cut redundant API calls and improve load times</li>
+        <li>Hardened app security with SSL pinning and custom certificate encryption against MITM attacks, plus Keychain-backed storage for sensitive financial data</li>
+        <li>Mentored 2 iOS engineers through weekly code reviews, architecture sessions, and pairing</li>
+      </ul>
+    </div>
+
+    <div class="card timeline-card" style="margin-bottom:24px;">
+      <div class="timeline-head">
+        <h3>Geeks — Education Center</h3>
+        <span class="years">Dec 2022 – Dec 2023</span>
+      </div>
+      <div class="timeline-role">iOS Development Instructor · Bishkek City, Kyrgyzstan</div>
+      <ul>
+        <li>Taught Swift, UIKit, SwiftUI, and mobile architecture to 100+ students across 10+ cohorts — 20+ graduates now working as iOS developers</li>
+        <li>Built the iOS curriculum from scratch, adapted teaching style per student, and gave 1:1 mentorship to those who needed it, connecting graduates with job opportunities</li>
+        <li>Invited back for every cohort — 10+ consecutive — as proof of teaching quality</li>
+      </ul>
+    </div>
+
+    <div class="card timeline-card" style="margin-bottom:24px;">
+      <div class="timeline-head">
+        <h3>Optima Bank Kyrgyzstan</h3>
+        <span class="years">Nov 2022 – Sep 2023</span>
+      </div>
+      <div class="timeline-role">iOS Engineer</div>
+      <ul>
+        <li>Led 5 iOS engineers on the Cards and Profile domains; proposed and drove adoption of MVI over MVVM — its unidirectional data flow was the only architecture compatible with our KMM shared logic layer's intent→state contract, achieving 100% business logic parity across iOS and Android</li>
+        <li>Drove a 70% UIKit → SwiftUI migration of financial modules while maintaining a 98.5% crash-free rate, and built a reusable SwiftUI design system adopted team-wide</li>
+        <li>Decoupled the monolith into feature-boundary SPM frameworks, reducing incremental build times and enabling parallel development across independent domains</li>
+      </ul>
+    </div>
+
+    <div class="card timeline-card" style="margin-bottom:24px;">
+      <div class="timeline-head">
+        <h3>Mustard</h3>
+        <span class="years">Sep 2021 – Nov 2022</span>
+      </div>
+      <div class="timeline-role">iOS Engineer · United States (Remote)</div>
+      <ul>
+        <li>Owned the GIF rendering pipeline — resolved scroll lag with object pooling, lazy frame decoding (visible cells ±2), and a custom memory-mapped cache, supporting 30+ concurrent GIFs with stable memory</li>
+        <li>Shipped 20+ core social features: Instagram-style profiles, in-app video creation via AVFoundation, a comments feed, and a follower/following system</li>
+        <li>Maintained a 99.6% crash-free rate; integrated Amplitude and Firebase for performance monitoring and analytics</li>
+      </ul>
+    </div>
+
+    <div class="card timeline-card">
+      <div class="timeline-head">
+        <h3>Neobis</h3>
+        <span class="years">Mar 2021 – Sep 2021</span>
+      </div>
+      <div class="timeline-role">iOS Engineer · Bishkek City, Kyrgyzstan</div>
+      <ul>
+        <li>Developed and delivered 2 iOS applications as the sole iOS developer: a sports event management app and a multi-role CRM system for a coffee shop (customer, waiter, and barista interfaces)</li>
+        <li>Collaborated with a cross-functional team of 5 in an agile environment — daily standups, sprint planning, and stakeholder presentations</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+
+<section id="activities" class="alt">
+  <div class="wrap">
+    <div class="eyebrow">Activities</div>
+    <h2 class="section-title">Leadership & Mentorship</h2>
+    <p class="section-sub">Contributing beyond my own codebase — teaching, leading, and staying sharp.</p>
+    <div class="grid-2">
+      <div class="card">
+        <h3>Geeks Bootcamp — iOS Instructor</h3>
+        <p>10+ cohorts, 100+ students taken from zero programming background to job-ready iOS developers — 20+ now working as iOS engineers. Built the curriculum, ran 1:1 sessions for struggling students, and connected graduates with job opportunities.</p>
+      </div>
+      <div class="card">
+        <h3>AI-Assisted Engineering</h3>
+        <p>Daily Claude Code user — using AI-assisted development as a real differentiator in day-to-day shipping speed, not just a novelty.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section id="contact">
+  <div class="wrap">
+    <div class="eyebrow">Get In Touch</div>
+    <h2 class="section-title">Let's Connect</h2>
+    <p class="section-sub">Open to Senior iOS roles at US product companies — fintech, consumer, or anything shipping real native apps.</p>
+    <div class="grid-3">
+      <div class="card contact-card">
+        <div class="icon">📧</div>
+        <h3>Email</h3>
+        <p><a href="mailto:iusupov.ramazan.i@gmail.com">iusupov.ramazan.i@gmail.com</a></p>
+      </div>
+      <div class="card contact-card">
+        <div class="icon">💻</div>
+        <h3>GitHub</h3>
+        <p><a href="https://github.com/1Ostep1" target="_blank" rel="noopener">@1Ostep1</a></p>
+      </div>
+      <div class="card contact-card">
+        <div class="icon">💼</div>
+        <h3>LinkedIn</h3>
+        <p><a href="https://linkedin.com/in/iramazan" target="_blank" rel="noopener">iramazan</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-links">
+      <a href="#home">Home</a>
+      <a href="#currently">Currently</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#experience">Experience</a>
+      <a href="#activities">Activities</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <div class="copyright">© <span id="year"></span> Ramazan. Built with Swift, SwiftUI, and a lot of coffee.</div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+  const menuBtn = document.getElementById('menuBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  menuBtn.addEventListener('click', () => {
+    mobileMenu.classList.toggle('open');
+  });
+  mobileMenu.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => mobileMenu.classList.remove('open'));
+  });
+</script>
+
+</body>
+</html>
